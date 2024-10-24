@@ -1,0 +1,69 @@
+.table-container {
+  padding: 20px;
+  background-color: #f8f9fa;
+}
+
+.table-header {
+  padding: 1px 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+  background-color: #004bac;
+  color: white;
+  border-radius: 8px;
+  height: 35px;
+}
+
+.create-user-btn {
+  padding: 6px 12px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.create-user-btn:hover {
+  background-color: #218838;
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.user-table th,
+.user-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  border-radius: 5px;
+}
+
+.user-table th {
+  background-color: #3b3cea;
+  color: white;
+  border-radius: 5px;
+}
+
+.user-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.user-table tr:hover {
+  background-color: #ddd;
+}
+
+.options-container {
+  position: relative;
+}
+
+.options-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: black;
+}
