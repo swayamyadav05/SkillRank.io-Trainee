@@ -1,32 +1,36 @@
 .table-container {
   padding: 20px;
   background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .table-header {
-  padding: 1px 5px;
+  padding: 10px 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 4px;
-  background-color: #004bac;
+  margin-bottom: 10px;
+  background-color: #000000;
   color: white;
   border-radius: 8px;
-  height: 35px;
+  height: 45px;
 }
 
 .create-user-btn {
-  padding: 6px 12px;
+  padding: 8px 15px;
   background-color: #28a745;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-bottom: 10px;
+  font-size: 1em;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .create-user-btn:hover {
   background-color: #218838;
+  transform: translateY(-1px);
 }
 
 .user-table {
@@ -37,15 +41,16 @@
 .user-table th,
 .user-table td {
   border: 1px solid #ddd;
-  padding: 8px;
+  padding: 12px;
   text-align: left;
   border-radius: 5px;
 }
 
 .user-table th {
-  background-color: #3b3cea;
+  background-color: #3636c9;
   color: white;
   border-radius: 5px;
+  font-size: 1em;
 }
 
 .user-table tr:nth-child(even) {
@@ -53,7 +58,8 @@
 }
 
 .user-table tr:hover {
-  background-color: #ddd;
+  background-color: #e0e0e0;
+  transition: background-color 0.2s ease;
 }
 
 .options-container {
@@ -65,5 +71,12 @@
   border: none;
   cursor: pointer;
   font-size: 18px;
-  color: black;
+  color: #333;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.options-btn:hover {
+  background: none;
+  color: #007bff;
+  transform: scale(1.3);
 }
