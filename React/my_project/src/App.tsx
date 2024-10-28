@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import Header from "./components/Header/Header";
 import UserTable from "./components/UserTable/UserTable";
+import Login from "./components/Auth/Login";
+import Signup from "./components/Auth/Signup";
 import "./App.css";
 
 // Use the environment variable for the API base URL
@@ -11,6 +19,9 @@ const App: React.FC = () => {
   const [users, setUsers] = useState<any[]>([]); // State to hold users data
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+
+  // Authentication state
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(true);
 
   // Pagination states
   const [page, setPage] = useState<number>(1);
@@ -54,21 +65,67 @@ const App: React.FC = () => {
   if (error) return <div className="error">Error: {error}</div>;
 
   return (
-    <div className="app-container">
-      <Header />
-      <UserTable users={users} fetchData={() => fetchData(page, limit)} />
-      <div className="pagination">
-        <button onClick={handlePreviousPage} disabled={page === 1}>
-          Previous
-        </button>
-        <span>
-          Page {page} of {Math.ceil(total / limit)}
-        </span>
-        <button onClick={handleNextPage} disabled={page * limit >= total}>
-          Next
-        </button>
+    <Router>
+      <div className="app-container">
+        {/* Pass showLogoutButton prop based on the route */}
+        <Routes>
+          <Route path="/" element={<Navigate to="/login" replace />} />
+          <Route
+            path="/home"
+            element={
+              isAuthenticated ? (
+                <>
+                  <Header showLogoutButton={true} />
+                  <UserTable
+                    users={users}
+                    fetchData={() => fetchData(page, limit)}
+                  />
+                  <div className="pagination">
+                    <button onClick={handlePreviousPage} disabled={page === 1}>
+                      Previous
+                    </button>
+                    <span>
+                      Page {page} of {Math.ceil(total / limit)}
+                    </span>
+                    <button
+                      onClick={handleNextPage}
+                      disabled={page * limit >= total}
+                    >
+                      Next
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <Navigate to="/login" replace />
+              )
+            }
+          />
+
+          {/* Login and Signup Pages */}
+          <Route
+            path="/login"
+            element={
+              <>
+                <Header showLogoutButton={false} />
+                <Login onLogin={() => setIsAuthenticated(true)} />
+              </>
+            }
+          />
+          <Route
+            path="/signup"
+            element={
+              <>
+                <Header showLogoutButton={false} />
+                <Signup />
+              </>
+            }
+          />
+
+          {/* Redirect any unknown route to login */}
+          <Route path="*" element={<Navigate to="/login" replace />} />
+        </Routes>
       </div>
-    </div>
+    </Router>
   );
 };
 

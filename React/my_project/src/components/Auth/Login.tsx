@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Auth.css";
 
 interface LoginProps {
@@ -7,13 +7,14 @@ interface LoginProps {
 }
 
 const Login: React.FC<LoginProps> = ({ onLogin }) => {
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const validateForm = () => {
-    if (!email || !password) {
+    if (!username || !email || !password) {
       setError("All fields are required.");
       return false;
     }
@@ -35,38 +36,49 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ username, email, password }),
       });
       if (!response.ok) throw new Error("Login failed. Check credentials.");
 
       onLogin();
-      history.push("/");
+      navigate("/");
     } catch (error: any) {
       setError(error.message);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="auth-form">
+    <div className="auth-container">
       <h2>Login</h2>
-      <input
-        type="text"
-        name="username"
-        value={formData.username}
-        onChange={handleChange}
-        placeholder="Username"
-        required
-      />
-      <input
-        type="password"
-        name="password"
-        value={formData.password}
-        onChange={handleChange}
-        placeholder="Password"
-        required
-      />
-      <button type="submit">Login</button>
-    </form>
+      {error && <div className="error-message">{error}</div>}
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <button type="submit">Login</button>
+      </form>
+      <p>
+        Don't have an account? <a href="/signup">Sign up here</a>.
+      </p>
+    </div>
   );
 };
 

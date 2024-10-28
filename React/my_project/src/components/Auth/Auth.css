@@ -1,34 +1,52 @@
-.auth-form {
+/* components/Auth/Auth.css */
+.auth-container {
   max-width: 400px;
-  margin: auto;
-  padding: 20px;
-  background-color: #f1f1f1;
-  border-radius: 8px;
+  margin: 0 auto;
+  padding: 2em;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.auth-form h2 {
+.auth-container h2 {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 1em;
 }
 
-.auth-form input {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border-radius: 5px;
+.auth-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-container input {
+  margin-bottom: 1em;
+  padding: 0.8em;
+  font-size: 1em;
   border: 1px solid #ddd;
+  border-radius: 4px;
 }
 
-.auth-form button {
-  width: 100%;
-  padding: 10px;
+.auth-container button {
+  padding: 0.8em;
+  font-size: 1em;
+  color: #fff;
   background-color: #007bff;
-  color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
 }
 
-.auth-form button:hover {
+.auth-container button:hover {
   background-color: #0056b3;
+}
+
+.auth-container .error-message {
+  color: #e74c3c;
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.auth-container p {
+  text-align: center;
+  margin-top: 1em;
 }
