@@ -17,7 +17,7 @@ const generateCustomID = (): string => {
 export const fetchUsers = async (): Promise<User[] | undefined> => {
   try {
     const response = await fetch(
-      "https://njzudhkqwg.execute-api.us-east-1.amazonaws.com/default/api/data"
+      "https://2ccs2nm0l9.execute-api.us-east-1.amazonaws.com/default/api/data"
     );
 
     if (!response.ok) {
@@ -28,23 +28,20 @@ export const fetchUsers = async (): Promise<User[] | undefined> => {
     const users: User[] = await response.json();
     return users;
   } catch (error) {
-    console.error("Error:", error);
+    console.error("Error fetching users:", error);
     return undefined;
   }
 };
 
 // Create a new user in Lambda
-export const createUser = async (formData: User): Promise<void> => {
+export const createUser = async (formData: UserUpdateData): Promise<void> => {
   try {
     const newUserData = {
-      name: formData.name,
-      language: formData.language,
+      ...formData,
       id: generateCustomID(),
-      bio: formData.bio,
-      version: formData.version,
     };
     const response = await fetch(
-      "https://njzudhkqwg.execute-api.us-east-1.amazonaws.com/default/api/data",
+      "https://2ccs2nm0l9.execute-api.us-east-1.amazonaws.com/default/api/data",
       {
         method: "POST",
         headers: {
@@ -74,7 +71,7 @@ export const updateUser = async (
 ): Promise<void> => {
   try {
     const response = await fetch(
-      `https://njzudhkqwg.execute-api.us-east-1.amazonaws.com/default/api/data/${_id}`,
+      `https://2ccs2nm0l9.execute-api.us-east-1.amazonaws.com/default/api/data/${_id}`,
       {
         method: "PUT",
         headers: {
@@ -101,7 +98,7 @@ export const updateUser = async (
 export const deleteUser = async (_id: string): Promise<void> => {
   try {
     const response = await fetch(
-      `https://njzudhkqwg.execute-api.us-east-1.amazonaws.com/default/api/data/${_id}`,
+      `https://2ccs2nm0l9.execute-api.us-east-1.amazonaws.com/default/api/data/${_id}`,
       {
         method: "DELETE",
         headers: {

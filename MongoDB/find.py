@@ -3,7 +3,7 @@ import json
 
 # Connecting to MongoDB Atlas
 client = MongoClient(
-    "mongodb+srv://swayamsk:5UWqMJMs1aqJcizU@cluster0.97pxt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+    "mongodb+srv://swayamsk:swayamsk@cluster0.97pxt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 )
 
 # Creating a database and collection

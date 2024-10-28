@@ -3,6 +3,10 @@ import Header from "./components/Header/Header";
 import UserTable from "./components/UserTable/UserTable";
 import "./App.css";
 
+// Use the environment variable for the API base URL
+const BASE_URL =
+  "https://2ccs2nm0l9.execute-api.us-east-1.amazonaws.com/default/api";
+
 const App: React.FC = () => {
   const [users, setUsers] = useState<any[]>([]); // State to hold users data
   const [loading, setLoading] = useState<boolean>(true);
@@ -15,7 +19,7 @@ const App: React.FC = () => {
 
   const fetchData = async (currentPage: number, currentLimit: number) => {
     try {
-      const apiUrl = `https://udj5ss8nhe.execute-api.us-east-1.amazonaws.com/default/api/data?page=${currentPage}&limit=${currentLimit}`;
+      const apiUrl = `${BASE_URL}/data?page=${currentPage}&limit=${currentLimit}`;
       const response = await fetch(apiUrl);
       if (!response.ok) {
         throw new Error(`Error: ${response.status} ${response.statusText}`);
