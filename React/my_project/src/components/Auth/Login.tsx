@@ -41,12 +41,20 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
           body: JSON.stringify({ username, email, password }),
         }
       );
-      if (!response.ok) throw new Error("Login failed. Check credentials.");
 
-      onLogin();
-      navigate("/");
+      const data = await response.json();
+      console.log("Server response:", data);
+
+      if (response.ok) {
+        onLogin(); // Update app-level isAuthenticated state
+        console.log("User logged in successfully");
+        navigate("/home");
+      } else {
+        setError(data.error || "Login failed. Check your credentials.");
+      }
     } catch (error: any) {
-      setError(error.message);
+      setError("An error occurred. Please try again.");
+      console.error("Error during login:", error);
     }
   };
 

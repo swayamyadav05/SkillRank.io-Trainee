@@ -33,7 +33,7 @@ const Signup: React.FC = () => {
 
     try {
       const response = await fetch(
-        "https://acajyyje6f.execute-api.us-east-1.amazonaws.com/stage1/signup",
+        "https://acajyyje6f.execute-api.us-east-1.amazonaws.com/stage1/login",
         {
           method: "POST",
           headers: {
@@ -42,11 +42,19 @@ const Signup: React.FC = () => {
           body: JSON.stringify({ username, email, password }),
         }
       );
-      if (!response.ok) throw new Error("Signup failed. Try again.");
 
-      navigate("/login");
+      const data = await response.json();
+      console.log("Server response:", data);
+
+      if (response.ok) {
+        console.log("Signup successful for user:", username);
+        navigate("/login");
+      } else {
+        setError(data.error || "Signup failed. Please try again.");
+      }
     } catch (error: any) {
-      setError(error.message);
+      setError("An error occurred. Please try again.");
+      console.error("Error during signup:", error);
     }
   };
 

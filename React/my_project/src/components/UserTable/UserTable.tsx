@@ -20,10 +20,23 @@ interface User {
 
 interface UserTableProps {
   users: User[];
-  fetchData: () => void;
+  total: number; // Add total prop for pagination
+  page: number; // Current page
+  limit: number; // Users per page
+  onNextPage: () => void; // Function to go to the next page
+  onPreviousPage: () => void; // Function to go to the previous page
+  fetchData: () => void; // Function to fetch users
 }
 
-const UserTable: React.FC<UserTableProps> = ({ users, fetchData }) => {
+const UserTable: React.FC<UserTableProps> = ({
+  users,
+  total,
+  page,
+  limit,
+  onNextPage,
+  onPreviousPage,
+  fetchData,
+}) => {
   const [showOptions, setShowOptions] = useState<{ [key: string]: boolean }>(
     {}
   );
@@ -142,6 +155,20 @@ const UserTable: React.FC<UserTableProps> = ({ users, fetchData }) => {
           )}
         </tbody>
       </table>
+
+      {/* Pagination Controls */}
+      <div className="pagination">
+        <button onClick={onPreviousPage} disabled={page === 1}>
+          Previous
+        </button>
+        <span>
+          Page {page} of {Math.ceil(total / limit)}
+        </span>
+        <button onClick={onNextPage} disabled={page * limit >= total}>
+          Next
+        </button>
+      </div>
+
       <UserFormModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}

@@ -11,21 +11,16 @@ import Login from "./components/Auth/Login";
 import Signup from "./components/Auth/Signup";
 import "./App.css";
 
-// Use the environment variable for the API base URL
 const BASE_URL =
   "https://2ccs2nm0l9.execute-api.us-east-1.amazonaws.com/default/api";
 
 const App: React.FC = () => {
-  const [users, setUsers] = useState<any[]>([]); // State to hold users data
+  const [users, setUsers] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-
-  // Authentication state
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-
-  // Pagination states
   const [page, setPage] = useState<number>(1);
-  const [limit, setLimit] = useState<number>(20); // Adjust as needed
+  const [limit, setLimit] = useState<number>(20);
   const [total, setTotal] = useState<number>(0);
 
   const fetchData = async (currentPage: number, currentLimit: number) => {
@@ -46,8 +41,13 @@ const App: React.FC = () => {
   };
 
   useEffect(() => {
-    fetchData(page, limit);
-  }, [page, limit]);
+    if (isAuthenticated) {
+      fetchData(page, limit);
+    } else {
+      console.log("User not authenticated, no data fetched.");
+      setLoading(false); // Set loading to false if not authenticated to avoid infinite loading state
+    }
+  }, [isAuthenticated, page, limit]);
 
   const handleNextPage = () => {
     if (page * limit < total) {
@@ -61,68 +61,45 @@ const App: React.FC = () => {
     }
   };
 
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    console.log("User logged out");
+  };
+
   if (loading) return <div className="loader">Loading...</div>;
   if (error) return <div className="error">Error: {error}</div>;
 
   return (
     <Router>
       <div className="app-container">
-        {/* Pass showLogoutButton prop based on the route */}
         <Routes>
-          <Route path="/" element={<Navigate to="/login" replace />} />
+          <Route path="/" element={<Navigate to="/signup" replace />} />
           <Route
             path="/home"
             element={
               isAuthenticated ? (
                 <>
-                  <Header showLogoutButton={true} />
+                  <Header showLogoutButton={true} onLogout={handleLogout} />
                   <UserTable
                     users={users}
-                    fetchData={() => fetchData(page, limit)}
+                    total={total}
+                    page={page}
+                    limit={limit}
+                    onNextPage={handleNextPage}
+                    onPreviousPage={handlePreviousPage}
+                    fetchData={() => fetchData(page, limit)} // Pass fetchData as a prop
                   />
-                  <div className="pagination">
-                    <button onClick={handlePreviousPage} disabled={page === 1}>
-                      Previous
-                    </button>
-                    <span>
-                      Page {page} of {Math.ceil(total / limit)}
-                    </span>
-                    <button
-                      onClick={handleNextPage}
-                      disabled={page * limit >= total}
-                    >
-                      Next
-                    </button>
-                  </div>
                 </>
               ) : (
                 <Navigate to="/login" replace />
               )
             }
           />
-
-          {/* Login and Signup Pages */}
           <Route
             path="/login"
-            element={
-              <>
-                <Header showLogoutButton={false} />
-                <Login onLogin={() => setIsAuthenticated(true)} />
-              </>
-            }
+            element={<Login onLogin={() => setIsAuthenticated(true)} />}
           />
-          <Route
-            path="/signup"
-            element={
-              <>
-                <Header showLogoutButton={false} />
-                <Signup />
-              </>
-            }
-          />
-
-          {/* Redirect any unknown route to login */}
-          <Route path="*" element={<Navigate to="/login" replace />} />
+          <Route path="/signup" element={<Signup />} />
         </Routes>
       </div>
     </Router>
