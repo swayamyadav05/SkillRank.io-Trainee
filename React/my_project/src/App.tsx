@@ -45,7 +45,7 @@ const App: React.FC = () => {
       fetchData(page, limit);
     } else {
       console.log("User not authenticated, no data fetched.");
-      setLoading(false); // Set loading to false if not authenticated to avoid infinite loading state
+      setLoading(false);
     }
   }, [isAuthenticated, page, limit]);
 
@@ -66,39 +66,40 @@ const App: React.FC = () => {
     console.log("User logged out");
   };
 
+  const handleLogin = () => {
+    setIsAuthenticated(true);
+    console.log("Authentication status:", isAuthenticated);
+  };
+
   if (loading) return <div className="loader">Loading...</div>;
   if (error) return <div className="error">Error: {error}</div>;
 
   return (
     <Router>
       <div className="app-container">
+        {/* Render Header on all pages */}
+        <Header showLogoutButton={isAuthenticated} onLogout={handleLogout} />
         <Routes>
           <Route path="/" element={<Navigate to="/signup" replace />} />
           <Route
             path="/home"
             element={
               isAuthenticated ? (
-                <>
-                  <Header showLogoutButton={true} onLogout={handleLogout} />
-                  <UserTable
-                    users={users}
-                    total={total}
-                    page={page}
-                    limit={limit}
-                    onNextPage={handleNextPage}
-                    onPreviousPage={handlePreviousPage}
-                    fetchData={() => fetchData(page, limit)} // Pass fetchData as a prop
-                  />
-                </>
+                <UserTable
+                  users={users}
+                  total={total}
+                  page={page}
+                  limit={limit}
+                  onNextPage={handleNextPage}
+                  onPreviousPage={handlePreviousPage}
+                  fetchData={() => fetchData(page, limit)}
+                />
               ) : (
                 <Navigate to="/login" replace />
               )
             }
           />
-          <Route
-            path="/login"
-            element={<Login onLogin={() => setIsAuthenticated(true)} />}
-          />
+          <Route path="/login" element={<Login onLogin={handleLogin} />} />
           <Route path="/signup" element={<Signup />} />
         </Routes>
       </div>

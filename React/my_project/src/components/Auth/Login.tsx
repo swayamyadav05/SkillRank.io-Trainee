@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Auth.css";
+import Header from "../Header/Header";
 
 interface LoginProps {
   onLogin: () => void;
@@ -8,18 +9,13 @@ interface LoginProps {
 
 const Login: React.FC<LoginProps> = ({ onLogin }) => {
   const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
   const validateForm = () => {
-    if (!username || !email || !password) {
-      setError("All fields are required.");
-      return false;
-    }
-    if (!/\S+@\S+\.\S+/.test(email)) {
-      setError("Invalid email format.");
+    if (!username || !password) {
+      setError("Username and password are required.");
       return false;
     }
     setError(null);
@@ -38,19 +34,29 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ username, email, password }),
+          body: JSON.stringify({
+            action: "login",
+            username,
+            password,
+          }),
         }
       );
 
-      const data = await response.json();
-      console.log("Server response:", data);
+      const data = await response.json(); // Parse response
+      console.log("Server response:", data); // Log full response
 
-      if (response.ok) {
-        onLogin(); // Update app-level isAuthenticated state
-        console.log("User logged in successfully");
+      // Extract message from the body
+      const responseBody = JSON.parse(data.body);
+      console.log("Parsed response body:", responseBody); // Log the parsed body
+
+      if (response.ok && responseBody.message === "Login successful !!") {
+        onLogin();
+        console.log("User logged in successfully.");
         navigate("/home");
       } else {
-        setError(data.error || "Login failed. Check your credentials.");
+        setError(
+          responseBody.error || "Login failed. Check credentials or try again."
+        );
       }
     } catch (error: any) {
       setError("An error occurred. Please try again.");
@@ -68,13 +74,6 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
           required
         />
         <input

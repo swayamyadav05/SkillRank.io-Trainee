@@ -4,7 +4,7 @@ import React from "react";
 
 interface HeaderProps {
   showLogoutButton: boolean;
-  onLogout?: () => void; // Optional onLogout function
+  onLogout?: () => void;
 }
 
 const Header: React.FC<HeaderProps> = ({ showLogoutButton, onLogout }) => {
