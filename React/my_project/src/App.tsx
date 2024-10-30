@@ -21,7 +21,7 @@ const App: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   // Authentication state
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(true);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
   // Pagination states
   const [page, setPage] = useState<number>(1);

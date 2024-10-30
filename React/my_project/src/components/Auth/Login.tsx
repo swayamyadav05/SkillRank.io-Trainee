@@ -31,13 +31,16 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
     if (!validateForm()) return;
 
     try {
-      const response = await fetch("api", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username, email, password }),
-      });
+      const response = await fetch(
+        "https://acajyyje6f.execute-api.us-east-1.amazonaws.com/stage1/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username, email, password }),
+        }
+      );
       if (!response.ok) throw new Error("Login failed. Check credentials.");
 
       onLogin();

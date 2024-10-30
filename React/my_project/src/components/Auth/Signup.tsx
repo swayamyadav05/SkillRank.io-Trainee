@@ -32,13 +32,16 @@ const Signup: React.FC = () => {
     if (!validateForm()) return;
 
     try {
-      const response = await fetch("api-url", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username, email, password }),
-      });
+      const response = await fetch(
+        "https://acajyyje6f.execute-api.us-east-1.amazonaws.com/stage1/signup",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username, email, password }),
+        }
+      );
       if (!response.ok) throw new Error("Signup failed. Try again.");
 
       navigate("/login");
