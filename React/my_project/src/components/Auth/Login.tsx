@@ -28,7 +28,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
 
     try {
       const response = await fetch(
-        "https://acajyyje6f.execute-api.us-east-1.amazonaws.com/stage1/login",
+        "https://qublrgg2p0.execute-api.us-east-1.amazonaws.com/default/login",
         {
           method: "POST",
           headers: {
@@ -42,21 +42,44 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
         }
       );
 
-      const data = await response.json(); // Parse response
-      console.log("Server response:", data); // Log full response
-
-      // Extract message from the body
-      const responseBody = JSON.parse(data.body);
-      console.log("Parsed response body:", responseBody); // Log the parsed body
-
-      if (response.ok && responseBody.message === "Login successful !!") {
-        onLogin();
-        console.log("User logged in successfully.");
-        navigate("/home");
-      } else {
+      // Check if the response is ok
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error("Error data:", errorData); // Log the error data
         setError(
-          responseBody.error || "Login failed. Check credentials or try again."
+          errorData.error || "Login failed. Check credentials or try again."
         );
+        return;
+      }
+
+      const data = await response.json();
+
+      console.log("Server response:", data);
+
+      if (data.body) {
+        let responseBody;
+        try {
+          responseBody = JSON.parse(data.body);
+        } catch (error) {
+          console.error("Error parsing response body:", error);
+          setError("Failed to parse server response.");
+          return;
+        }
+
+        console.log("Parsed response body:", responseBody);
+
+        if (responseBody.message === "Login successful !!") {
+          onLogin();
+          console.log("User logged in successfully.");
+          navigate("/home");
+        } else {
+          setError(
+            responseBody.error ||
+              "Login failed. Check credentials or try again."
+          );
+        }
+      } else {
+        setError("Unexpected response format.");
       }
     } catch (error: any) {
       setError("An error occurred. Please try again.");

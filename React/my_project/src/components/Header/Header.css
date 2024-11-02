@@ -1,29 +1,39 @@
+:root {
+  --header-background: #f8f9fa; /* Background color for the header */
+  --primary-color: #007bff; /* Primary color for buttons and links */
+  --primary-dark: #0056b3; /* Darker shade for hover states */
+  --button-active: #004080; /* Color for active button state */
+  --box-shadow: rgba(0, 0, 0, 0.1); /* Shadow color for elements */
+  --gap-between-items: 15px; /* Gap between items in header */
+}
+
 .header {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 30px;
-  background-color: #f8f9fa;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px 30px; /* Adjust as necessary for spacing */
+  background-color: var(--header-background);
+  box-shadow: 0 4px 8px var(--box-shadow);
   position: sticky;
   top: 0;
   z-index: 1000;
 }
 
 .logo {
-  height: 50px;
+  height: 50px; /* Maintain consistent logo height */
   cursor: pointer;
   transition: transform 0.3s ease;
 }
 
 .logo:hover {
-  transform: scale(1.05);
+  transform: scale(1.05); /* Slightly enlarge on hover for interactivity */
 }
 
 .header-right {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: var(--gap-between-items); /* Use variable for consistent spacing */
 }
 
 .logout-btn {
@@ -31,7 +41,7 @@
   font-size: 0.9em;
   font-weight: bold;
   color: #fff;
-  background-color: #007bff;
+  background-color: var(--primary-color);
   border: none;
   border-radius: 20px;
   cursor: pointer;
@@ -40,11 +50,32 @@
 }
 
 .logout-btn:hover {
-  background-color: #0056b3;
+  background-color: var(--primary-dark);
   transform: translateY(-2px);
 }
 
 .logout-btn:active {
-  background-color: #004080;
+  background-color: var(--button-active);
   transform: translateY(1px);
+}
+
+.logout-btn:focus {
+  outline: none; /* Remove default outline */
+  box-shadow: 0 0 0 2px var(--primary-color); /* Custom focus outline */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header {
+    padding: 10px 20px; /* Adjust padding for smaller screens */
+  }
+
+  .header-right {
+    gap: 10px; /* Reduce gap on smaller screens */
+  }
+
+  .logout-btn {
+    padding: 6px 12px; /* Adjust button size for smaller screens */
+    font-size: 0.8em; /* Slightly smaller font size */
+  }
 }

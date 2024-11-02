@@ -1,11 +1,21 @@
+:root {
+  --primary-color: #007bff; /* Primary color for buttons and links */
+  --primary-dark: #0056b3; /* Darker shade for hover states */
+  --background-color: #f8f9fa; /* Background color for auth container */
+  --error-color: #e74c3c; /* Error message color */
+  --text-color: #333; /* Main text color */
+  --placeholder-color: #aaa; /* Placeholder color for inputs */
+}
+
 .auth-container {
   max-width: 400px;
   margin: 2em auto;
   padding: 2em;
-  background-color: #f8f9fa;
+  background-color: var(--background-color);
   border-radius: 8px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
   transition: box-shadow 0.3s ease;
+  width: 90%; /* Make the container responsive */
 }
 
 .auth-container:hover {
@@ -15,8 +25,8 @@
 .auth-container h2 {
   text-align: center;
   margin-bottom: 1.5em;
-  font-size: 1.5em;
-  color: #333;
+  font-size: 1.5rem; /* Use rem for scalability */
+  color: var(--text-color);
 }
 
 .auth-container form {
@@ -27,34 +37,43 @@
 .auth-container input {
   margin-bottom: 1em;
   padding: 0.8em;
-  font-size: 1em;
+  font-size: 1rem; /* Use rem for consistency */
   border: 1px solid #ccc;
   border-radius: 4px;
   transition: border-color 0.3s ease;
+  color: var(--text-color);
+}
+
+.auth-container input::placeholder {
+  color: var(--placeholder-color); /* Style placeholder color */
 }
 
 .auth-container input:focus {
-  border-color: #007bff;
+  border-color: var(--primary-color);
   outline: none;
 }
 
 .auth-container button {
   padding: 0.8em;
-  font-size: 1em;
+  font-size: 1rem;
   color: #fff;
-  background-color: #007bff;
+  background-color: var(--primary-color);
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.1s ease; /* Add transform for active state */
 }
 
 .auth-container button:hover {
-  background-color: #0056b3;
+  background-color: var(--primary-dark);
+}
+
+.auth-container button:active {
+  transform: scale(0.98); /* Scale down on active click */
 }
 
 .auth-container .error-message {
-  color: #e74c3c;
+  color: var(--error-color);
   text-align: center;
   margin-bottom: 1em;
   font-weight: bold;
@@ -67,7 +86,7 @@
 }
 
 .auth-container a {
-  color: #007bff;
+  color: var(--primary-color);
   text-decoration: none;
 }
 
@@ -91,6 +110,6 @@
   right: 10px;
   cursor: pointer;
   font-size: 1.2em;
-  color: #007bff;
-  bottom: 27px;
+  color: var(--primary-color);
+  bottom: 12px; /* Adjust positioning */
 }

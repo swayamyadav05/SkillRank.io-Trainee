@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import PasswordInput from "./PasswordInput"; // Make sure the path is correct
 import "./Auth.css";
 
 const Signup: React.FC = () => {
@@ -35,7 +36,7 @@ const Signup: React.FC = () => {
 
     try {
       const response = await fetch(
-        "https://acajyyje6f.execute-api.us-east-1.amazonaws.com/stage1/signup",
+        "https://qublrgg2p0.execute-api.us-east-1.amazonaws.com/default/signup",
         {
           method: "POST",
           headers: {
@@ -83,36 +84,22 @@ const Signup: React.FC = () => {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        <div className="password-input-container">
-          <input
-            type={showPassword ? "text" : "password"}
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <span
-            className="toggle-password"
-            onClick={() => setShowPassword(!showPassword)}
-          >
-            {showPassword ? "👁️" : "👁️‍🗨️"}
-          </span>
-        </div>
-        <div className="password-input-container">
-          <input
-            type={showConfirmPassword ? "text" : "password"}
-            placeholder="Confirm Password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-          <span
-            className="toggle-password"
-            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-          >
-            {showConfirmPassword ? "👁️" : "👁️‍🗨️"}
-          </span>
-        </div>
+        <PasswordInput
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          showPassword={showPassword}
+          togglePasswordVisibility={() => setShowPassword(!showPassword)}
+          placeholder="Password"
+        />
+        <PasswordInput
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          showPassword={showConfirmPassword}
+          togglePasswordVisibility={() =>
+            setShowConfirmPassword(!showConfirmPassword)
+          }
+          placeholder="Confirm Password"
+        />
         <button type="submit">Sign Up</button>
       </form>
       <p>

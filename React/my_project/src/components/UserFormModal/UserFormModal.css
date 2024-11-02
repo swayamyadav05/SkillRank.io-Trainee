@@ -1,3 +1,21 @@
+:root {
+  --modal-background: rgba(
+    0,
+    0,
+    0,
+    0.6
+  ); /* Background color for modal overlay */
+  --modal-content-background: #ffffff; /* Background color for modal content */
+  --border-color: #ddd; /* Border color for inputs */
+  --focus-border-color: #007bff; /* Border color on focus */
+  --submit-button-background: #007bff; /* Background color for submit button */
+  --submit-button-hover: #0056b3; /* Background color for submit button on hover */
+  --close-button-color: #888; /* Close button color */
+  --close-button-hover: #333; /* Close button color on hover */
+  --button-background: #121921; /* Background color for default buttons */
+  --button-hover-background: #333; /* Background color for buttons on hover */
+}
+
 .modal {
   position: fixed;
   z-index: 1000;
@@ -6,7 +24,7 @@
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: var(--modal-background);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,13 +32,13 @@
 }
 
 .modal-content {
-  background-color: #ffffff;
+  background-color: var(--modal-content-background);
   padding: 25px;
   border-radius: 12px;
   width: 90%;
   max-width: 500px;
   position: relative;
-  box-shadow: 0 2px 8dvh rgb(70, 70, 70);
+  box-shadow: 0 2px 8px rgb(70, 70, 70);
   transform: scale(0.95);
   animation: scaleIn 0.3s ease-in-out forwards;
 }
@@ -30,13 +48,13 @@
   top: 12px;
   right: 20px;
   font-size: 24px;
-  color: #888;
+  color: var(--close-button-color);
   cursor: pointer;
   transition: color 0.3s ease;
 }
 
 .close:hover {
-  color: #333;
+  color: var(--close-button-hover);
 }
 
 .form-group {
@@ -56,20 +74,20 @@
   padding: 12px;
   font-size: 1em;
   border-radius: 6px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   transition: border-color 0.3s ease;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
-  border-color: #007bff;
+  border-color: var(--focus-border-color);
   outline: none;
 }
 
 .submit-button {
   margin-top: 15px;
   padding: 12px 25px;
-  background-color: #007bff;
+  background-color: var(--submit-button-background);
   color: #fff;
   font-size: 1em;
   font-weight: 500;
@@ -81,14 +99,14 @@
 }
 
 .submit-button:hover {
-  background-color: #0056b3;
+  background-color: var(--submit-button-hover);
   transform: translateY(-1px);
 }
 
 button {
   padding: 12px 25px;
   font-size: 1em;
-  background-color: #121921;
+  background-color: var(--button-background);
   color: #fff;
   border: none;
   border-radius: 25px;
@@ -97,7 +115,7 @@ button {
 }
 
 button:hover {
-  background-color: #333;
+  background-color: var(--button-hover-background);
   transform: translateY(-1px);
 }
 
@@ -117,5 +135,21 @@ button:hover {
   }
   to {
     transform: scale(1);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .modal-content {
+    padding: 15px; /* Adjust padding for smaller screens */
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%; /* Use full width on smaller screens */
+  }
+
+  .submit-button {
+    width: 100%; /* Make the submit button full-width */
   }
 }

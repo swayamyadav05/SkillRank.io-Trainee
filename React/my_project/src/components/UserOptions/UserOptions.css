@@ -8,23 +8,37 @@
   z-index: 1000;
   overflow: hidden;
   min-width: 150px;
+  max-height: 300px; /* Limit dropdown height */
+  overflow-y: auto; /* Add vertical scrollbar if necessary */
+  animation: fadeIn 0.2s ease-in-out; /* Smooth appearance */
 }
 
 .options-dropdown ul {
   list-style: none;
   padding: 0;
   margin: 0;
+  max-height: 100%; /* Prevent overflow */
 }
 
 .options-dropdown li {
   padding: 12px 15px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  position: relative; /* For pseudo-element positioning */
 }
 
-.options-dropdown li:hover {
+.options-dropdown li:hover,
+.options-dropdown li:focus {
   background-color: #f1f1f1;
   color: #007bff;
+}
+
+.options-dropdown li:active {
+  background-color: #d1e7dd;
+}
+
+.options-dropdown li:not(:last-child) {
+  border-bottom: 1px solid #ddd;
 }
 
 .options-dropdown-arrow {
@@ -39,10 +53,33 @@
   transform: translateX(-50%);
 }
 
-.options-dropdown li:not(:last-child) {
-  border-bottom: 1px solid #ddd;
+/* Animation for dropdown */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px); /* Slightly move it up during fade-in */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.options-dropdown li:active {
-  background-color: #d1e7dd;
+/* Accessibility: Add focus outline for keyboard navigation */
+.options-dropdown li:focus {
+  outline: 2px solid #007bff; /* Blue outline for focused item */
+}
+
+/* Additional styles for scrollbar */
+.options-dropdown::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+.options-dropdown::-webkit-scrollbar-thumb {
+  background-color: #ccc; /* Color of the scrollbar thumb */
+  border-radius: 10px; /* Rounded scrollbar thumb */
+}
+
+.options-dropdown::-webkit-scrollbar-thumb:hover {
+  background-color: #bbb; /* Darker thumb on hover */
 }

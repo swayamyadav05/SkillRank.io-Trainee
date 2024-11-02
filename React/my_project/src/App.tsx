@@ -77,7 +77,6 @@ const App: React.FC = () => {
   return (
     <Router>
       <div className="app-container">
-        {/* Render Header on all pages */}
         <Header showLogoutButton={isAuthenticated} onLogout={handleLogout} />
         <Routes>
           <Route path="/" element={<Navigate to="/signup" replace />} />
