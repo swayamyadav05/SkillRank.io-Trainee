@@ -8,6 +8,8 @@ const Signup: React.FC = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const navigate = useNavigate();
 
   const validateForm = () => {
@@ -40,7 +42,7 @@ const Signup: React.FC = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            action: "signup", // Specify action here
+            action: "signup",
             username,
             email,
             password,
@@ -52,7 +54,7 @@ const Signup: React.FC = () => {
 
       if (response.ok) {
         console.log("Signup successful:", data.message);
-        navigate("/login"); // Navigate to login after successful signup
+        navigate("/login");
       } else {
         setError(data.error || "Signup failed. Try again.");
       }
@@ -81,20 +83,36 @@ const Signup: React.FC = () => {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Confirm Password"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          required
-        />
+        <div className="password-input-container">
+          <input
+            type={showPassword ? "text" : "password"}
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <span
+            className="toggle-password"
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? "👁️" : "👁️‍🗨️"}
+          </span>
+        </div>
+        <div className="password-input-container">
+          <input
+            type={showConfirmPassword ? "text" : "password"}
+            placeholder="Confirm Password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+          />
+          <span
+            className="toggle-password"
+            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+          >
+            {showConfirmPassword ? "👁️" : "👁️‍🗨️"}
+          </span>
+        </div>
         <button type="submit">Sign Up</button>
       </form>
       <p>
