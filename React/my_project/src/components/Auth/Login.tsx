@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Auth.css";
-
+import PasswordInput from "./PasswordInput";
+import { CiUser } from "react-icons/ci";
 interface LoginProps {
   onLogin: () => void;
-  // onLogout: () => void;
 }
 
 const Login: React.FC<LoginProps> = ({ onLogin }) => {
@@ -95,33 +95,26 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
           </div>
         )}
         <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-            aria-label="Username"
-            className={error ? "input-error" : ""}
-          />
-          <div className="password-input-container">
+          <div className="input-container">
             <input
-              type={showPassword ? "text" : "password"}
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              type="text"
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               required
-              aria-label="Password"
+              aria-label="Username"
               className={error ? "input-error" : ""}
             />
-            <span
-              className="toggle-password"
-              onClick={() => setShowPassword(!showPassword)}
-              aria-label={showPassword ? "Hide password" : "Show password"}
-            >
-              {showPassword ? "👁️" : "👁️‍🗨️"}
-            </span>
+            <CiUser className="input-icon" />
           </div>
+          <PasswordInput
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            showPassword={showPassword}
+            togglePasswordVisibility={() => setShowPassword(!showPassword)}
+            placeholder="Password"
+            id="password"
+          />
           <button type="submit" className="login-button">
             Login
           </button>

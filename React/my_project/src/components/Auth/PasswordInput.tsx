@@ -1,4 +1,5 @@
 import React from "react";
+import { CiLock, CiUnlock } from "react-icons/ci";
 
 interface PasswordInputProps {
   value: string;
@@ -37,7 +38,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
         tabIndex={0}
         aria-label={showPassword ? "Hide password" : "Show password"}
       >
-        {showPassword ? "👁️" : "👁️‍🗨️"}
+        {showPassword ? <CiUnlock /> : <CiLock />}
       </span>
     </div>
   );

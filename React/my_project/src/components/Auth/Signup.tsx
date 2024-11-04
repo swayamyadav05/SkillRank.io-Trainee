@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import PasswordInput from "./PasswordInput"; // Ensure correct path
+import PasswordInput from "./PasswordInput";
 import "./Auth.css";
-// import Header from "../Header/Header";
+import { CiUser } from "react-icons/ci";
+import { CiMail } from "react-icons/ci";
 
 interface SignupProps {
   onSignup: () => void;
-  // onLogout: () => void;
 }
 
 const Signup: React.FC<SignupProps> = ({ onSignup }) => {
@@ -79,27 +79,31 @@ const Signup: React.FC<SignupProps> = ({ onSignup }) => {
   };
 
   return (
-    // <div>
-    //   <Header onLogout={onLogout} showLogoutButton={false} />
     <div className="page-container">
       <div className="auth-container">
         <h2>Sign Up</h2>
         {error && <div className="error-message">{error}</div>}
         <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+          <div className="input-container">
+            <input
+              type="text"
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+            <CiUser className="input-icon" />
+          </div>
+          <div className="input-container">
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <CiMail className="input-icon" />
+          </div>
           <PasswordInput
             value={password}
             onChange={(e) => handlePasswordChange(e.target.value)}

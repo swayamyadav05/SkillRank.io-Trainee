@@ -44,6 +44,20 @@ h2 {
   font-size: 14px;
 }
 
+.input-container {
+  position: relative;
+  margin-top: 20px;
+}
+
+.input-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #6c757d;
+}
+
 input {
   width: 100%;
   padding: 14px;
