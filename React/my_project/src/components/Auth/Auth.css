@@ -8,14 +8,17 @@
 }
 
 .auth-container {
-  max-width: 400px;
-  margin: 2em auto;
+  max-width: 400px; /* Keep your max-width */
+  margin: 2em auto; /* Center the container horizontally */
   padding: 2em;
   background-color: var(--background-color);
   border-radius: 8px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
   transition: box-shadow 0.3s ease;
   width: 90%; /* Make the container responsive */
+  display: flex; /* Add this line */
+  flex-direction: column; /* Add this line */
+  align-items: center; /* Add this line for vertical centering */
 }
 
 .auth-container:hover {
@@ -112,4 +115,11 @@
   font-size: 1.2em;
   color: var(--primary-color);
   bottom: 12px; /* Adjust positioning */
+}
+
+.password-strength {
+  color: #888;
+  font-size: 0.9em;
+  margin-top: 0.5em;
+  text-align: left;
 }

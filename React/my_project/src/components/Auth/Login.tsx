@@ -31,9 +31,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
         "https://qublrgg2p0.execute-api.us-east-1.amazonaws.com/default/login",
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             action: "login",
             username,
@@ -42,27 +40,24 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
         }
       );
 
-      // Check if the response is ok
+      const data = await response.json();
+
       if (!response.ok) {
-        const errorData = await response.json();
-        console.error("Error data:", errorData); // Log the error data
-        setError(
-          errorData.error || "Login failed. Check credentials or try again."
-        );
+        setError(data.error || "Login failed. Check credentials or try again.");
+        console.error("Error during login:", data);
         return;
       }
 
-      const data = await response.json();
-
-      console.log("Server response:", data);
+      console.group("Server Response");
+      console.log("Raw response data:", data);
 
       if (data.body) {
         let responseBody;
         try {
           responseBody = JSON.parse(data.body);
         } catch (error) {
-          console.error("Error parsing response body:", error);
           setError("Failed to parse server response.");
+          console.error("Parsing error:", error);
           return;
         }
 
@@ -81,6 +76,8 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
       } else {
         setError("Unexpected response format.");
       }
+
+      console.groupEnd();
     } catch (error: any) {
       setError("An error occurred. Please try again.");
       console.error("Error during login:", error);
@@ -110,6 +107,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
           <span
             className="toggle-password"
             onClick={() => setShowPassword(!showPassword)}
+            aria-label={showPassword ? "Hide password" : "Show password"}
           >
             {showPassword ? "👁️" : "👁️‍🗨️"}
           </span>

@@ -11,9 +11,12 @@ const Signup: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [passwordStrength, setPasswordStrength] = useState<string | null>(null);
   const navigate = useNavigate();
 
   const validateForm = () => {
+    setError(null); // Clear any previous errors
+
     if (!username || !email || !password || !confirmPassword) {
       setError("All fields are required.");
       return false;
@@ -26,8 +29,19 @@ const Signup: React.FC = () => {
       setError("Passwords do not match.");
       return false;
     }
-    setError(null);
     return true;
+  };
+
+  const handlePasswordChange = (value: string) => {
+    setPassword(value);
+    setPasswordStrength(getPasswordStrength(value));
+  };
+
+  const getPasswordStrength = (value: string) => {
+    if (value.length < 6) return "Weak";
+    if (value.length >= 6 && /[A-Z]/.test(value) && /\d/.test(value))
+      return "Strong";
+    return "Moderate";
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -39,15 +53,8 @@ const Signup: React.FC = () => {
         "https://qublrgg2p0.execute-api.us-east-1.amazonaws.com/default/signup",
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            action: "signup",
-            username,
-            email,
-            password,
-          }),
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ action: "signup", username, email, password }),
         }
       );
 
@@ -86,11 +93,14 @@ const Signup: React.FC = () => {
         />
         <PasswordInput
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => handlePasswordChange(e.target.value)}
           showPassword={showPassword}
           togglePasswordVisibility={() => setShowPassword(!showPassword)}
           placeholder="Password"
         />
+        {passwordStrength && (
+          <div className="password-strength">{`Strength: ${passwordStrength}`}</div>
+        )}
         <PasswordInput
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}

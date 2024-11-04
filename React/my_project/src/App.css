@@ -1,26 +1,61 @@
+:root {
+  --primary-color: #007bff;
+  --primary-hover-color: #0056b3;
+  --error-color: #e74c3c;
+  --background-color: #f0f2f5;
+  --text-color: #333;
+}
+
 #root {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  min-height: 100vh;
+  background-color: var(--background-color);
 }
 
 .app-container {
-  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
   min-height: 100vh;
-  padding: 20px; /* Added padding for mobile */
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.auth-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.auth-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: var(--text-color);
 }
 
 .loader {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 1.5em;
-  margin-top: 50px;
+  height: 80vh;
 }
 
 .error {
-  color: #e74c3c; /* Slightly lighter red */
+  color: var(--error-color);
   text-align: center;
   font-size: 1.2em;
   margin-top: 50px;
@@ -38,34 +73,22 @@
   padding: 10px 20px;
   font-size: 1em;
   cursor: pointer;
-  border: 1px solid #007bff; /* Add border for better visibility */
-  background-color: #fff; /* White background */
-  color: #007bff; /* Text color */
+  border: 1px solid var(--primary-color);
+  background-color: #fff;
+  color: var(--primary-color);
   border-radius: 4px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
 }
 
 .pagination button:hover {
-  background-color: #007bff; /* Background color on hover */
-  color: white; /* Text color on hover */
+  background-color: var(--primary-color);
+  color: #fff;
+  transform: translateY(-2px);
 }
 
 .pagination span {
   font-size: 1em;
-}
-
-.auth-container {
-  width: 100%;
-  margin: 0 auto;
-  padding: 2rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
-
-.auth-container h2 {
-  margin-bottom: 1.5rem;
-  text-align: center; /* Center the header */
+  color: var(--text-color);
 }
 
 .auth-container input[type="text"],
@@ -77,13 +100,13 @@
   font-size: 1em;
   border: 1px solid #ddd;
   border-radius: 4px;
+  transition: border-color 0.3s ease;
   box-sizing: border-box;
-  transition: border-color 0.3s ease; /* Smooth transition */
 }
 
 .auth-container input:focus {
-  border-color: #007bff; /* Change border color on focus */
-  outline: none; /* Remove default outline */
+  border-color: var(--primary-color);
+  outline: none;
 }
 
 .password-input-container {
@@ -97,39 +120,53 @@
   transform: translateY(-50%);
   cursor: pointer;
   color: #888;
+  transition: color 0.3s ease;
+}
+
+.show-password-icon:hover {
+  color: var(--primary-color);
 }
 
 .auth-container button {
   width: 100%;
   padding: 12px;
-  background-color: #007bff;
+  background-color: var(--primary-color);
   color: white;
   font-size: 1em;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease; /* Added transform for hover effect */
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .auth-container button:hover {
-  background-color: #0056b3;
-  transform: translateY(-1px); /* Subtle lift effect */
+  background-color: var(--primary-hover-color);
+  transform: translateY(-1px);
 }
 
 .auth-container button:focus {
-  outline: 2px solid #0056b3; /* Focus outline for accessibility */
+  outline: 2px solid var(--primary-hover-color);
 }
 
 .auth-container .error-message {
-  color: #e74c3c;
+  color: var(--error-color);
   margin-bottom: 1rem;
   font-size: 0.9em;
-  text-align: center; /* Center the error message */
+  text-align: center;
 }
 
 /* Responsive Design */
 @media (max-width: 600px) {
   .auth-container {
-    padding: 1rem; /* Reduce padding on smaller screens */
+    padding: 1rem;
+  }
+
+  .auth-container h2 {
+    font-size: 1.5rem;
+  }
+
+  .pagination button {
+    padding: 8px 15px;
+    font-size: 0.9em;
   }
 }

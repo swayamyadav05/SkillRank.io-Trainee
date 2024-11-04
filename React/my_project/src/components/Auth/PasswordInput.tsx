@@ -1,4 +1,3 @@
-// PasswordInput.tsx
 import React from "react";
 
 interface PasswordInputProps {
@@ -24,8 +23,16 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
         value={value}
         onChange={onChange}
         required
+        aria-label={placeholder}
       />
-      <span className="toggle-password" onClick={togglePasswordVisibility}>
+      <span
+        className="toggle-password"
+        onClick={togglePasswordVisibility}
+        onKeyDown={(e) => e.key === "Enter" && togglePasswordVisibility()}
+        role="button"
+        tabIndex={0}
+        aria-label={showPassword ? "Hide password" : "Show password"}
+      >
         {showPassword ? "👁️" : "👁️‍🗨️"}
       </span>
     </div>

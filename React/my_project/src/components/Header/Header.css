@@ -1,23 +1,30 @@
 :root {
-  --header-background: #f8f9fa; /* Background color for the header */
+  --header-background: #ffffff; /* Light background for a clean look */
   --primary-color: #007bff; /* Primary color for buttons and links */
   --primary-dark: #0056b3; /* Darker shade for hover states */
   --button-active: #004080; /* Color for active button state */
-  --box-shadow: rgba(0, 0, 0, 0.1); /* Shadow color for elements */
+  --box-shadow: rgba(0, 0, 0, 0.2); /* Softer shadow color for elements */
   --gap-between-items: 15px; /* Gap between items in header */
+  --border-radius: 25px; /* Rounded corners */
 }
 
 .header {
+  height: 70px;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 30px; /* Adjust as necessary for spacing */
+  padding: 10px 20px; /* Adjusted padding for a more compact layout */
   background-color: var(--header-background);
-  box-shadow: 0 4px 8px var(--box-shadow);
+  box-shadow: 0 2px 8px var(--box-shadow);
   position: sticky;
   top: 0;
   z-index: 1000;
+  overflow: hidden; /* Prevents overflow */
+}
+
+.header:hover {
+  background-color: rgba(255, 255, 255, 0.9); /* Slightly darker on hover */
 }
 
 .logo {
@@ -33,20 +40,20 @@
 .header-right {
   display: flex;
   align-items: center;
-  gap: var(--gap-between-items); /* Use variable for consistent spacing */
+  gap: var(--gap-between-items);
 }
 
 .logout-btn {
-  padding: 8px 16px;
-  font-size: 0.9em;
+  padding: 10px 15px; /* Adjusted padding for a more compact button */
+  font-size: 1em; /* Increased font size for readability */
   font-weight: bold;
-  color: #fff;
+  color: white;
   background-color: var(--primary-color);
   border: none;
-  border-radius: 20px;
+  border-radius: var(--border-radius);
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Softer shadow */
 }
 
 .logout-btn:hover {
@@ -67,7 +74,7 @@
 /* Responsive Design */
 @media (max-width: 768px) {
   .header {
-    padding: 10px 20px; /* Adjust padding for smaller screens */
+    padding: 10px 15px; /* Adjust padding for smaller screens */
   }
 
   .header-right {
@@ -75,7 +82,7 @@
   }
 
   .logout-btn {
-    padding: 6px 12px; /* Adjust button size for smaller screens */
-    font-size: 0.8em; /* Slightly smaller font size */
+    padding: 8px 12px; /* Adjust button size for smaller screens */
+    font-size: 0.9em; /* Slightly smaller font size */
   }
 }
