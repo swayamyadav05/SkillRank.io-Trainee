@@ -16,7 +16,7 @@ const App: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [page, setPage] = useState<number>(1);
-  const [limit, setLimit] = useState<number>(20);
+  const [limit] = useState<number>(20);
   const [total, setTotal] = useState<number>(0);
   const navigate = useNavigate();
 
