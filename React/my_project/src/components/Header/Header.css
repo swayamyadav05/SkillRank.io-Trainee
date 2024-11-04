@@ -13,7 +13,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 30px;
+  padding: 5px 15px;
   background-color: var(--header-background);
   box-shadow: 0 4px 8px var(--box-shadow);
   position: sticky;
@@ -28,7 +28,7 @@
 }
 
 .logo {
-  height: 50px;
+  height: 30px;
   cursor: pointer;
   transition: transform 0.3s ease;
 }
@@ -44,7 +44,7 @@
 }
 
 .logout-btn {
-  padding: 10px 15px;
+  padding: 5px 10px;
   font-size: 1em;
   font-weight: bold;
   color: white;
