@@ -9,22 +9,20 @@
 }
 
 .header {
-  height: 70px;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px; /* Adjusted padding for a more compact layout */
+  padding: 15px 30px; /* Adjust as necessary for spacing */
   background-color: var(--header-background);
-  box-shadow: 0 2px 8px var(--box-shadow);
+  box-shadow: 0 4px 8px var(--box-shadow);
   position: sticky;
   top: 0;
   z-index: 1000;
-  overflow: hidden; /* Prevents overflow */
 }
 
 .header:hover {
-  background-color: rgba(255, 255, 255, 0.9); /* Slightly darker on hover */
+  background-color: rgba(255, 255, 255, 0.95);
 }
 
 .logo {

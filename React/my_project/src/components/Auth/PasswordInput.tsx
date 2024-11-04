@@ -6,6 +6,7 @@ interface PasswordInputProps {
   showPassword: boolean;
   togglePasswordVisibility: () => void;
   placeholder: string;
+  id: string;
 }
 
 const PasswordInput: React.FC<PasswordInputProps> = ({
@@ -14,6 +15,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
   showPassword,
   togglePasswordVisibility,
   placeholder,
+  id,
 }) => {
   return (
     <div className="password-input-container">
@@ -24,6 +26,8 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
         onChange={onChange}
         required
         aria-label={placeholder}
+        id={id}
+        className="password-input"
       />
       <span
         className="toggle-password"

@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import PasswordInput from "./PasswordInput"; // Make sure the path is correct
+import PasswordInput from "./PasswordInput"; // Ensure correct path
 import "./Auth.css";
+// import Header from "../Header/Header";
 
-const Signup: React.FC = () => {
+interface SignupProps {
+  onSignup: () => void;
+  // onLogout: () => void;
+}
+
+const Signup: React.FC<SignupProps> = ({ onSignup }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,8 +21,7 @@ const Signup: React.FC = () => {
   const navigate = useNavigate();
 
   const validateForm = () => {
-    setError(null); // Clear any previous errors
-
+    setError(null);
     if (!username || !email || !password || !confirmPassword) {
       setError("All fields are required.");
       return false;
@@ -62,9 +67,10 @@ const Signup: React.FC = () => {
 
       if (response.ok) {
         console.log("Signup successful:", data.message);
+        onSignup();
         navigate("/login");
       } else {
-        setError(data.error || "Signup failed. Try again.");
+        setError(data.error || "Signup failed. Please try again.");
       }
     } catch (error) {
       setError("An error occurred. Please try again.");
@@ -73,6 +79,8 @@ const Signup: React.FC = () => {
   };
 
   return (
+    // <div>
+    //   <Header onLogout={onLogout} showLogoutButton={false} />
     <div className="auth-container">
       <h2>Sign Up</h2>
       {error && <div className="error-message">{error}</div>}
@@ -97,9 +105,14 @@ const Signup: React.FC = () => {
           showPassword={showPassword}
           togglePasswordVisibility={() => setShowPassword(!showPassword)}
           placeholder="Password"
+          id="password"
         />
         {passwordStrength && (
-          <div className="password-strength">{`Strength: ${passwordStrength}`}</div>
+          <div
+            className={`password-strength ${passwordStrength.toLowerCase()}`}
+          >
+            Strength: {passwordStrength}
+          </div>
         )}
         <PasswordInput
           value={confirmPassword}
@@ -109,6 +122,7 @@ const Signup: React.FC = () => {
             setShowConfirmPassword(!showConfirmPassword)
           }
           placeholder="Confirm Password"
+          id="confirm-password"
         />
         <button type="submit">Sign Up</button>
       </form>
@@ -116,6 +130,7 @@ const Signup: React.FC = () => {
         Already have an account? <a href="/login">Login here</a>.
       </p>
     </div>
+    // </div>
   );
 };
 

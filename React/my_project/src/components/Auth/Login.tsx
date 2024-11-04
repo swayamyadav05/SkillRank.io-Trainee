@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Auth.css";
+// import Header from "../Header/Header";
 
 interface LoginProps {
   onLogin: () => void;
+  // onLogout: () => void;
 }
 
 const Login: React.FC<LoginProps> = ({ onLogin }) => {
@@ -85,9 +87,15 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
   };
 
   return (
+    // <div>
+    //   <Header onLogout={onLogout} showLogoutButton={false} />
     <div className="auth-container">
       <h2>Login</h2>
-      {error && <div className="error-message">{error}</div>}
+      {error && (
+        <div className="error-message" role="alert" aria-live="assertive">
+          {error}
+        </div>
+      )}
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -95,6 +103,8 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
+          aria-label="Username"
+          className={error ? "input-error" : ""}
         />
         <div className="password-input-container">
           <input
@@ -103,6 +113,8 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            aria-label="Password"
+            className={error ? "input-error" : ""}
           />
           <span
             className="toggle-password"
@@ -112,12 +124,15 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
             {showPassword ? "👁️" : "👁️‍🗨️"}
           </span>
         </div>
-        <button type="submit">Login</button>
+        <button type="submit" className="login-button">
+          Login
+        </button>
       </form>
       <p>
         Don't have an account? <a href="/signup">Sign up here</a>.
       </p>
     </div>
+    // </div>
   );
 };
 

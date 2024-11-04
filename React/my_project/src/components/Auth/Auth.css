@@ -1,125 +1,112 @@
-:root {
-  --primary-color: #007bff; /* Primary color for buttons and links */
-  --primary-dark: #0056b3; /* Darker shade for hover states */
-  --background-color: #f8f9fa; /* Background color for auth container */
-  --error-color: #e74c3c; /* Error message color */
-  --text-color: #333; /* Main text color */
-  --placeholder-color: #aaa; /* Placeholder color for inputs */
-}
-
 .auth-container {
-  max-width: 400px; /* Keep your max-width */
-  margin: 2em auto; /* Center the container horizontally */
-  padding: 2em;
-  background-color: var(--background-color);
-  border-radius: 8px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  transition: box-shadow 0.3s ease;
-  width: 90%; /* Make the container responsive */
-  display: flex; /* Add this line */
-  flex-direction: column; /* Add this line */
-  align-items: center; /* Add this line for vertical centering */
+  max-width: 400px; /* Maximum width of the container */
+  margin: auto; /* Center the container */
+  padding: 30px; /* Increased padding for a spacious feel */
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* Deeper shadow for depth */
+  background: linear-gradient(
+    to right,
+    #f8f9fa,
+    #e9ecef
+  ); /* Gradient background */
+  transition: transform 0.3s; /* Animation for scale effect */
 }
 
 .auth-container:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  transform: scale(1.02); /* Slight scale on hover */
 }
 
-.auth-container h2 {
-  text-align: center;
-  margin-bottom: 1.5em;
-  font-size: 1.5rem; /* Use rem for scalability */
-  color: var(--text-color);
+h2 {
+  text-align: center; /* Center the heading */
+  margin-bottom: 20px; /* Space below heading */
+  font-family: "Montserrat", sans-serif; /* Modern font */
+  font-weight: 600; /* Bold font */
+  color: #333; /* Darker color for text */
 }
 
-.auth-container form {
-  display: flex;
-  flex-direction: column;
+.input-error {
+  border: 1px solid #dc3545; /* Red border for error */
 }
 
-.auth-container input {
-  margin-bottom: 1em;
-  padding: 0.8em;
-  font-size: 1rem; /* Use rem for consistency */
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  transition: border-color 0.3s ease;
-  color: var(--text-color);
+.error-message {
+  color: #dc3545; /* Error message color */
+  margin-bottom: 15px; /* Space below error message */
+  font-weight: 500; /* Slightly bolder font */
 }
 
-.auth-container input::placeholder {
-  color: var(--placeholder-color); /* Style placeholder color */
+input {
+  width: 100%; /* Full width */
+  padding: 12px; /* Padding for input fields */
+  margin: 10px 0; /* Margin for spacing */
+  border: 1px solid #ced4da; /* Light border color */
+  border-radius: 8px; /* Rounded corners */
+  transition: border 0.3s; /* Smooth transition for border */
+  font-size: 16px; /* Font size */
 }
 
-.auth-container input:focus {
-  border-color: var(--primary-color);
-  outline: none;
-}
-
-.auth-container button {
-  padding: 0.8em;
-  font-size: 1rem;
-  color: #fff;
-  background-color: var(--primary-color);
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.1s ease; /* Add transform for active state */
-}
-
-.auth-container button:hover {
-  background-color: var(--primary-dark);
-}
-
-.auth-container button:active {
-  transform: scale(0.98); /* Scale down on active click */
-}
-
-.auth-container .error-message {
-  color: var(--error-color);
-  text-align: center;
-  margin-bottom: 1em;
-  font-weight: bold;
-}
-
-.auth-container p {
-  text-align: center;
-  margin-top: 1em;
-  color: #666;
-}
-
-.auth-container a {
-  color: var(--primary-color);
-  text-decoration: none;
-}
-
-.auth-container a:hover {
-  text-decoration: underline;
+input:focus {
+  border-color: #007bff; /* Change border color on focus */
+  outline: none; /* Remove outline */
 }
 
 .password-input-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.password-input-container input {
-  width: 100%;
-  padding-right: 2.5em;
+  position: relative; /* Position for the password toggle */
 }
 
 .toggle-password {
-  position: absolute;
-  right: 10px;
-  cursor: pointer;
-  font-size: 1.2em;
-  color: var(--primary-color);
-  bottom: 12px; /* Adjust positioning */
+  position: absolute; /* Position the toggle icon */
+  right: 10px; /* Space from the right */
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Adjust for perfect vertical centering */
+  cursor: pointer; /* Pointer cursor for interactivity */
+  font-size: 18px; /* Increase icon size */
 }
 
-.password-strength {
-  color: #888;
-  font-size: 0.9em;
-  margin-top: 0.5em;
-  text-align: left;
+.login-button {
+  width: 100%; /* Full-width button */
+  padding: 12px; /* Padding for the button */
+  border: none; /* No border */
+  border-radius: 8px; /* Rounded corners */
+  background-color: #007bff; /* Primary color */
+  color: #fff; /* Text color */
+  font-size: 16px; /* Font size */
+  font-weight: 600; /* Bold font */
+  cursor: pointer; /* Pointer cursor */
+  transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+}
+
+.login-button:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+  transform: translateY(-2px); /* Slight lift on hover */
+}
+
+p {
+  text-align: center; /* Center the paragraph */
+  margin-top: 15px; /* Space above paragraph */
+  font-size: 14px; /* Font size */
+}
+
+a {
+  color: #007bff; /* Link color */
+  text-decoration: none; /* No underline */
+  transition: color 0.3s; /* Smooth color transition */
+}
+
+a:hover {
+  color: #0056b3; /* Darker color on hover */
+}
+
+.password-input {
+  width: 100%;
+  padding: 14px; /* Same as input */
+  margin: 10px 0; /* Consistent spacing */
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  transition: border 0.3s, box-shadow 0.3s;
+}
+
+.password-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  outline: none;
 }

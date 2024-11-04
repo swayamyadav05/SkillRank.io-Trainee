@@ -69,6 +69,7 @@ const App: React.FC = () => {
   };
 
   const handleSignup = () => {
+    setIsAuthenticated(true);
     navigate("/login");
     console.log("User signed up successfully");
   };
@@ -87,7 +88,13 @@ const App: React.FC = () => {
 
   return (
     <div className="app-container">
-      <Header showLogoutButton={isAuthenticated} onLogout={handleLogout} />
+      {/* Conditionally render Header */}
+      {window.location.pathname === "/login" ||
+      window.location.pathname === "/signup" ? (
+        <Header showLogoutButton={false} />
+      ) : (
+        <Header showLogoutButton={isAuthenticated} onLogout={handleLogout} />
+      )}
       <div className="main-content">
         <Routes>
           <Route path="/" element={<Navigate to="/signup" replace />} />
