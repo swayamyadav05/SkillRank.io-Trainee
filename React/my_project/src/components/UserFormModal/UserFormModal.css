@@ -3,17 +3,21 @@
     0,
     0,
     0,
-    0.6
-  ); /* Background color for modal overlay */
-  --modal-content-background: #ffffff; /* Background color for modal content */
-  --border-color: #ddd; /* Border color for inputs */
-  --focus-border-color: #007bff; /* Border color on focus */
-  --submit-button-background: #007bff; /* Background color for submit button */
-  --submit-button-hover: #0056b3; /* Background color for submit button on hover */
-  --close-button-color: #888; /* Close button color */
-  --close-button-hover: #333; /* Close button color on hover */
-  --button-background: #121921; /* Background color for default buttons */
-  --button-hover-background: #333; /* Background color for buttons on hover */
+    0.7
+  ); /* Darker background for modal overlay */
+  --modal-content-background: linear-gradient(
+    135deg,
+    #f3f4f6,
+    #e2e8f0
+  ); /* Gradient background for modal content */
+  --border-color: #ccc; /* Light border color for inputs */
+  --focus-border-color: #6b7280; /* Darker border color on focus */
+  --submit-button-background: #4f46e5; /* Vibrant button color */
+  --submit-button-hover: #4338ca; /* Darker shade for button on hover */
+  --close-button-color: #9ca3af; /* Soft close button color */
+  --close-button-hover: #6b7280; /* Darker close button on hover */
+  --button-background: #374151; /* Dark background for default buttons */
+  --button-hover-background: #1f2937; /* Darker background for buttons on hover */
 }
 
 .modal {
@@ -33,12 +37,12 @@
 
 .modal-content {
   background-color: var(--modal-content-background);
-  padding: 25px;
+  padding: 30px;
   border-radius: 12px;
   width: 90%;
   max-width: 500px;
   position: relative;
-  box-shadow: 0 2px 8px rgb(70, 70, 70);
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.3); /* Softer shadow for depth */
   transform: scale(0.95);
   animation: scaleIn 0.3s ease-in-out forwards;
 }
@@ -63,19 +67,20 @@
 
 .form-group label {
   display: block;
-  font-size: 0.95em;
-  color: #555;
+  font-size: 1em;
+  color: #d7d7d7;
   margin-bottom: 6px;
 }
 
 .form-group input,
 .form-group textarea {
-  width: 90%;
+  width: 100%;
   padding: 12px;
   font-size: 1em;
   border-radius: 6px;
   border: 1px solid var(--border-color);
   transition: border-color 0.3s ease;
+  background-color: #ffffff; /* White background for inputs */
 }
 
 .form-group input:focus,
@@ -88,14 +93,13 @@
   margin-top: 15px;
   padding: 12px 25px;
   background-color: var(--submit-button-background);
-  color: #fff;
+  color: #ffffff;
   font-size: 1em;
   font-weight: 500;
   border: none;
   border-radius: 25px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  align-items: center;
 }
 
 .submit-button:hover {
@@ -107,7 +111,7 @@ button {
   padding: 12px 25px;
   font-size: 1em;
   background-color: var(--button-background);
-  color: #fff;
+  color: #ffffff;
   border: none;
   border-radius: 25px;
   cursor: pointer;
@@ -125,7 +129,7 @@ button:hover {
     opacity: 0;
   }
   to {
-    opacity: 1;
+    opacity: 10;
   }
 }
 
@@ -141,7 +145,7 @@ button:hover {
 /* Responsive Design */
 @media (max-width: 768px) {
   .modal-content {
-    padding: 15px; /* Adjust padding for smaller screens */
+    padding: 20px; /* Adjusted padding for smaller screens */
   }
 
   .form-group input,
@@ -152,4 +156,13 @@ button:hover {
   .submit-button {
     width: 100%; /* Make the submit button full-width */
   }
+}
+
+.form-title {
+  font-size: 1.8em; /* Larger font size for prominence */
+  font-weight: 600; /* Semi-bold for emphasis */
+  color: #bcb9fb; /* Vibrant primary color */
+  text-align: center; /* Center the title */
+  margin-bottom: 20px; /* Space below the title */
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.1); /* Subtle shadow for depth */
 }

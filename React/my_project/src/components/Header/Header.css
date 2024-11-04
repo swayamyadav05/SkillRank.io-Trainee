@@ -1,11 +1,11 @@
 :root {
-  --header-background: #ffffff; /* Light background for a clean look */
-  --primary-color: #007bff; /* Primary color for buttons and links */
-  --primary-dark: #0056b3; /* Darker shade for hover states */
-  --button-active: #004080; /* Color for active button state */
-  --box-shadow: rgba(0, 0, 0, 0.2); /* Softer shadow color for elements */
-  --gap-between-items: 15px; /* Gap between items in header */
-  --border-radius: 25px; /* Rounded corners */
+  --header-background: #ffffff;
+  --primary-color: #007bff;
+  --primary-dark: #0056b3;
+  --button-active: #004080;
+  --box-shadow: rgba(0, 0, 0, 0.2);
+  --gap-between-items: 15px;
+  --border-radius: 25px;
 }
 
 .header {
@@ -13,26 +13,28 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 30px; /* Adjust as necessary for spacing */
+  padding: 15px 30px;
   background-color: var(--header-background);
   box-shadow: 0 4px 8px var(--box-shadow);
   position: sticky;
   top: 0;
   z-index: 1000;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .header:hover {
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .logo {
-  height: 50px; /* Maintain consistent logo height */
+  height: 50px;
   cursor: pointer;
   transition: transform 0.3s ease;
 }
 
 .logo:hover {
-  transform: scale(1.05); /* Slightly enlarge on hover for interactivity */
+  transform: scale(1.05) rotate(2deg);
 }
 
 .header-right {
@@ -42,8 +44,8 @@
 }
 
 .logout-btn {
-  padding: 10px 15px; /* Adjusted padding for a more compact button */
-  font-size: 1em; /* Increased font size for readability */
+  padding: 10px 15px;
+  font-size: 1em;
   font-weight: bold;
   color: white;
   background-color: var(--primary-color);
@@ -51,7 +53,7 @@
   border-radius: var(--border-radius);
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Softer shadow */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .logout-btn:hover {
@@ -65,22 +67,28 @@
 }
 
 .logout-btn:focus {
-  outline: none; /* Remove default outline */
-  box-shadow: 0 0 0 2px var(--primary-color); /* Custom focus outline */
+  outline: none;
+  box-shadow: 0 0 0 2px var(--primary-color);
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .header {
-    padding: 10px 15px; /* Adjust padding for smaller screens */
+    padding: 10px 15px;
   }
 
   .header-right {
-    gap: 10px; /* Reduce gap on smaller screens */
+    gap: 10px;
   }
 
   .logout-btn {
-    padding: 8px 12px; /* Adjust button size for smaller screens */
-    font-size: 0.9em; /* Slightly smaller font size */
+    padding: 8px 12px;
+    font-size: 0.9em;
   }
+}
+
+/* Global reset for box-sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }

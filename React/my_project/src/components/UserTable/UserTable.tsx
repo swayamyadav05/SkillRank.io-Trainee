@@ -104,7 +104,7 @@ const UserTable: React.FC<UserTableProps> = ({
   return (
     <div className="table-container">
       <div className="table-header">
-        <h2>User Table</h2>
+        <h2 className="table-title">User Table</h2>
         <button className="create-user-btn" onClick={handleCreateUser}>
           Create User
         </button>

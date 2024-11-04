@@ -1,112 +1,125 @@
+.page-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f0f2f5;
+  padding: 20px;
+}
+
 .auth-container {
-  max-width: 400px; /* Maximum width of the container */
-  margin: auto; /* Center the container */
-  padding: 30px; /* Increased padding for a spacious feel */
-  border-radius: 12px; /* Rounded corners */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* Deeper shadow for depth */
-  background: linear-gradient(
-    to right,
-    #f8f9fa,
-    #e9ecef
-  ); /* Gradient background */
-  transition: transform 0.3s; /* Animation for scale effect */
+  max-width: 400px;
+  width: 100%;
+  padding: 40px 30px;
+  border-radius: 15px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to right, #f8f9fa, #e9ecef);
+  transition: transform 0.4s ease, box-shadow 0.3s ease;
 }
 
 .auth-container:hover {
-  transform: scale(1.02); /* Slight scale on hover */
+  transform: scale(1.04);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
 }
 
 h2 {
-  text-align: center; /* Center the heading */
-  margin-bottom: 20px; /* Space below heading */
-  font-family: "Montserrat", sans-serif; /* Modern font */
-  font-weight: 600; /* Bold font */
-  color: #333; /* Darker color for text */
+  text-align: center;
+  margin-bottom: 24px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  color: #333;
+  font-size: 24px;
 }
 
 .input-error {
-  border: 1px solid #dc3545; /* Red border for error */
+  border: 1px solid #dc3545;
+  background-color: #ffe6e6;
 }
 
 .error-message {
-  color: #dc3545; /* Error message color */
-  margin-bottom: 15px; /* Space below error message */
-  font-weight: 500; /* Slightly bolder font */
+  color: #dc3545;
+  margin-top: -8px;
+  margin-bottom: 12px;
+  font-weight: 500;
+  font-size: 14px;
 }
 
 input {
-  width: 100%; /* Full width */
-  padding: 12px; /* Padding for input fields */
-  margin: 10px 0; /* Margin for spacing */
-  border: 1px solid #ced4da; /* Light border color */
-  border-radius: 8px; /* Rounded corners */
-  transition: border 0.3s; /* Smooth transition for border */
-  font-size: 16px; /* Font size */
+  width: 100%;
+  padding: 14px;
+  margin: 10px 0;
+  border: 1px solid #ced4da;
+  border-radius: 10px;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+  font-size: 16px;
 }
 
 input:focus {
-  border-color: #007bff; /* Change border color on focus */
-  outline: none; /* Remove outline */
+  border-color: #007bff;
+  box-shadow: 0 0 6px rgba(0, 123, 255, 0.4);
+  outline: none;
+}
+
+input:hover {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
 .password-input-container {
-  position: relative; /* Position for the password toggle */
+  position: relative;
 }
 
 .toggle-password {
-  position: absolute; /* Position the toggle icon */
-  right: 10px; /* Space from the right */
-  top: 50%; /* Center vertically */
-  transform: translateY(-50%); /* Adjust for perfect vertical centering */
-  cursor: pointer; /* Pointer cursor for interactivity */
-  font-size: 18px; /* Increase icon size */
+  position: absolute;
+  right: 12px;
+  top: 48%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 20px;
+  color: #6c757d;
+}
+
+.toggle-password:hover {
+  color: #007bff;
 }
 
 .login-button {
-  width: 100%; /* Full-width button */
-  padding: 12px; /* Padding for the button */
-  border: none; /* No border */
-  border-radius: 8px; /* Rounded corners */
-  background-color: #007bff; /* Primary color */
-  color: #fff; /* Text color */
-  font-size: 16px; /* Font size */
-  font-weight: 600; /* Bold font */
-  cursor: pointer; /* Pointer cursor */
-  transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .login-button:hover {
-  background-color: #0056b3; /* Darker shade on hover */
-  transform: translateY(-2px); /* Slight lift on hover */
+  background-color: #0056b3;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 10px rgba(0, 91, 179, 0.3);
+}
+
+.login-button:active {
+  background-color: #004080;
 }
 
 p {
-  text-align: center; /* Center the paragraph */
-  margin-top: 15px; /* Space above paragraph */
-  font-size: 14px; /* Font size */
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #495057;
 }
 
 a {
-  color: #007bff; /* Link color */
-  text-decoration: none; /* No underline */
-  transition: color 0.3s; /* Smooth color transition */
+  color: #007bff;
+  text-decoration: underline;
+  font-weight: 500;
+  transition: color 0.3s ease, font-weight 0.3s ease;
 }
 
 a:hover {
-  color: #0056b3; /* Darker color on hover */
-}
-
-.password-input {
-  width: 100%;
-  padding: 14px; /* Same as input */
-  margin: 10px 0; /* Consistent spacing */
-  border: 1px solid #ced4da;
-  border-radius: 8px;
-  transition: border 0.3s, box-shadow 0.3s;
-}
-
-.password-input:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-  outline: none;
+  color: #0056b3;
+  font-weight: 600;
 }

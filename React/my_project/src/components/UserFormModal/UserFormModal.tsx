@@ -62,7 +62,9 @@ const UserFormModal: React.FC<UserFormModalProps> = ({
   return (
     <div className="modal">
       <div className="modal-content">
-        <h2>{existingUser ? "Edit User" : "Create User"}</h2>
+        <h2 className="form-title">
+          {existingUser ? "Edit User" : "Create User"}
+        </h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label>Name:</label>

@@ -81,56 +81,57 @@ const Signup: React.FC<SignupProps> = ({ onSignup }) => {
   return (
     // <div>
     //   <Header onLogout={onLogout} showLogoutButton={false} />
-    <div className="auth-container">
-      <h2>Sign Up</h2>
-      {error && <div className="error-message">{error}</div>}
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <PasswordInput
-          value={password}
-          onChange={(e) => handlePasswordChange(e.target.value)}
-          showPassword={showPassword}
-          togglePasswordVisibility={() => setShowPassword(!showPassword)}
-          placeholder="Password"
-          id="password"
-        />
-        {passwordStrength && (
-          <div
-            className={`password-strength ${passwordStrength.toLowerCase()}`}
-          >
-            Strength: {passwordStrength}
-          </div>
-        )}
-        <PasswordInput
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          showPassword={showConfirmPassword}
-          togglePasswordVisibility={() =>
-            setShowConfirmPassword(!showConfirmPassword)
-          }
-          placeholder="Confirm Password"
-          id="confirm-password"
-        />
-        <button type="submit">Sign Up</button>
-      </form>
-      <p>
-        Already have an account? <a href="/login">Login here</a>.
-      </p>
+    <div className="page-container">
+      <div className="auth-container">
+        <h2>Sign Up</h2>
+        {error && <div className="error-message">{error}</div>}
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <PasswordInput
+            value={password}
+            onChange={(e) => handlePasswordChange(e.target.value)}
+            showPassword={showPassword}
+            togglePasswordVisibility={() => setShowPassword(!showPassword)}
+            placeholder="Password"
+            id="password"
+          />
+          {passwordStrength && (
+            <div
+              className={`password-strength ${passwordStrength.toLowerCase()}`}
+            >
+              Strength: {passwordStrength}
+            </div>
+          )}
+          <PasswordInput
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            showPassword={showConfirmPassword}
+            togglePasswordVisibility={() =>
+              setShowConfirmPassword(!showConfirmPassword)
+            }
+            placeholder="Confirm Password"
+            id="confirm-password"
+          />
+          <button type="submit">Sign Up</button>
+        </form>
+        <p>
+          Already have an account? <a href="/login">Login here</a>.
+        </p>
+      </div>
     </div>
-    // </div>
   );
 };
 

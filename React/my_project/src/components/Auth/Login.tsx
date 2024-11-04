@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Auth.css";
-// import Header from "../Header/Header";
 
 interface LoginProps {
   onLogin: () => void;
@@ -87,52 +86,51 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
   };
 
   return (
-    // <div>
-    //   <Header onLogout={onLogout} showLogoutButton={false} />
-    <div className="auth-container">
-      <h2>Login</h2>
-      {error && (
-        <div className="error-message" role="alert" aria-live="assertive">
-          {error}
-        </div>
-      )}
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-          aria-label="Username"
-          className={error ? "input-error" : ""}
-        />
-        <div className="password-input-container">
+    <div className="page-container">
+      <div className="auth-container">
+        <h2>Login</h2>
+        {error && (
+          <div className="error-message" role="alert" aria-live="assertive">
+            {error}
+          </div>
+        )}
+        <form onSubmit={handleSubmit}>
           <input
-            type={showPassword ? "text" : "password"}
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             required
-            aria-label="Password"
+            aria-label="Username"
             className={error ? "input-error" : ""}
           />
-          <span
-            className="toggle-password"
-            onClick={() => setShowPassword(!showPassword)}
-            aria-label={showPassword ? "Hide password" : "Show password"}
-          >
-            {showPassword ? "👁️" : "👁️‍🗨️"}
-          </span>
-        </div>
-        <button type="submit" className="login-button">
-          Login
-        </button>
-      </form>
-      <p>
-        Don't have an account? <a href="/signup">Sign up here</a>.
-      </p>
+          <div className="password-input-container">
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              aria-label="Password"
+              className={error ? "input-error" : ""}
+            />
+            <span
+              className="toggle-password"
+              onClick={() => setShowPassword(!showPassword)}
+              aria-label={showPassword ? "Hide password" : "Show password"}
+            >
+              {showPassword ? "👁️" : "👁️‍🗨️"}
+            </span>
+          </div>
+          <button type="submit" className="login-button">
+            Login
+          </button>
+        </form>
+        <p>
+          Don't have an account? <a href="/signup">Sign up here</a>.
+        </p>
+      </div>
     </div>
-    // </div>
   );
 };
 
