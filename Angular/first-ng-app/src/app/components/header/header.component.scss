@@ -1,9 +1,95 @@
-header {
+/* header.component.css */
+:root {
+  --header-background: #ffffff;
+  --primary-color: #007bff;
+  --primary-dark: #0056b3;
+  --button-active: #004080;
+  --box-shadow: rgba(0, 0, 0, 0.2);
+  --gap-between-items: 15px;
+  --border-radius: 25px;
+}
+
+.header {
+  width: 100%;
   display: flex;
-  padding-inline: 16px;
-  padding-block: 8px;
-  background-color: #333;
-  color: white;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  padding: 5px 15px;
+  background-color: var(--header-background);
+  box-shadow: 0 4px 8px var(--box-shadow);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.header:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.logo {
+  height: 30px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05) rotate(2deg);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-between-items);
+}
+
+.logout-btn {
+  padding: 5px 10px;
+  font-size: 1em;
+  font-weight: bold;
+  color: white;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logout-btn:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+.logout-btn:active {
+  background-color: var(--button-active);
+  transform: translateY(1px);
+}
+
+.logout-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--primary-color);
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 10px 15px;
+  }
+
+  .header-right {
+    gap: 10px;
+  }
+
+  .logout-btn {
+    padding: 8px 12px;
+    font-size: 0.9em;
+  }
+}
+
+/* Global reset for box-sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }

@@ -1,12 +1,28 @@
-import { Component, signal } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
-  standalone: true,
-  imports: [],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss',
+  styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
-  title = signal('My First Angular App');
+  @Input() showLogoutButton: boolean = false;
+  @Output() onLogout = new EventEmitter<void>();
+
+  constructor(private router: Router) {}
+
+  navigateToHome(): void {
+    this.router.navigate(['/home']);
+  }
+
+  handleKeyDown(event: KeyboardEvent): void {
+    if (event.key === 'Enter') {
+      this.navigateToHome();
+    }
+  }
+
+  logout(): void {
+    this.onLogout.emit();
+  }
 }

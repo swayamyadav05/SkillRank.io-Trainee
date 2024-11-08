@@ -1,3 +1,22 @@
-<header>
-  <nav>{{ title() }}</nav>
+<header class="header">
+  <img
+    src="assets/logo_black.svg"
+    alt="Logo"
+    class="logo"
+    (click)="navigateToHome()"
+    role="button"
+    tabindex="0"
+    aria-label="Navigate to home page"
+    (keydown)="handleKeyDown($event)"
+  />
+  <div class="header-right">
+    <button
+      *ngIf="showLogoutButton"
+      class="logout-btn"
+      (click)="logout()"
+      aria-label="Logout"
+    >
+      Logout
+    </button>
+  </div>
 </header>
