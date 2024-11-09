@@ -16,16 +16,18 @@ header {
     > span {
       cursor: pointer;
       &:hover {
-        color: #c2c2c2;
+        color: #bcbcbc;
       }
     }
+
     ul {
       list-style: none;
 
-      li {
+      button {
         cursor: pointer;
         &:hover {
-          color: #c2c2c2;
+          color: #ffffff;
+          background-color: rgb(108, 96, 170);
         }
       }
     }
